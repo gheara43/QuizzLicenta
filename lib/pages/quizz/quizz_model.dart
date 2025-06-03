@@ -31,6 +31,10 @@ class QuizzModel extends FlutterFlowModel<QuizzWidget> {
 
   bool? correctAnswer;
 
+  int nrCorrect = 0;
+
+  int nrWrong = 0;
+
   @override
   void initState(BuildContext context) {}
 

@@ -120,7 +120,56 @@ class _QuizzWidgetState extends State<QuizzWidget> {
                           FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                     ),
               ),
-              actions: [],
+              actions: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      _model.nrCorrect.toString(),
+                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                            font: GoogleFonts.interTight(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                            color: FlutterFlowTheme.of(context).success,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
+                    ),
+                    Text(
+                      _model.nrWrong.toString(),
+                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                            font: GoogleFonts.interTight(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                            color: FlutterFlowTheme.of(context).error,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
+                    ),
+                  ].divide(SizedBox(width: 20.0)).around(SizedBox(width: 20.0)),
+                ),
+              ],
               centerTitle: true,
               elevation: 2.0,
             ),
@@ -454,19 +503,29 @@ class _QuizzWidgetState extends State<QuizzWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        if (answersIndex ==
-                                                            _model.question
-                                                                ?.correctAnswer) {
-                                                          _model.correctAnswer =
-                                                              true;
-                                                        } else {
-                                                          _model.correctAnswer =
-                                                              false;
-                                                        }
+                                                        if (_model
+                                                                .answerSelected ==
+                                                            null) {
+                                                          if (answersIndex ==
+                                                              _model.question
+                                                                  ?.correctAnswer) {
+                                                            _model.correctAnswer =
+                                                                true;
+                                                            _model.nrCorrect =
+                                                                _model.nrCorrect +
+                                                                    1;
+                                                          } else {
+                                                            _model.correctAnswer =
+                                                                false;
+                                                            _model.nrWrong =
+                                                                _model.nrWrong +
+                                                                    1;
+                                                          }
 
-                                                        _model.answerSelected =
-                                                            answersIndex;
-                                                        safeSetState(() {});
+                                                          _model.answerSelected =
+                                                              answersIndex;
+                                                          safeSetState(() {});
+                                                        }
                                                       },
                                                       child: Container(
                                                         decoration:
@@ -581,6 +640,17 @@ class _QuizzWidgetState extends State<QuizzWidget> {
                                                 .elementAtOrNull(
                                                     _model.questionIndex);
                                             _model.answerSelected = null;
+                                            safeSetState(() {});
+                                            if (_model.correctAnswer!) {
+                                              _model.nrCorrect =
+                                                  _model.nrCorrect + -1;
+                                              safeSetState(() {});
+                                            } else {
+                                              _model.nrWrong =
+                                                  _model.nrWrong + -1;
+                                              safeSetState(() {});
+                                            }
+
                                             _model.correctAnswer = null;
                                             safeSetState(() {});
                                           },

@@ -20,3 +20,16 @@ int decrease(int variable) {
 // decrease variable by one
   return variable - 1; // Decrease the variable by one
 }
+
+List<QuestionDataTypeStruct> randomListItems(
+    List<QuestionDataTypeStruct> listVar) {
+  // return 3 different random items from listVar
+  final random = math.Random();
+  final selectedItems = <QuestionDataTypeStruct>{};
+
+  while (selectedItems.length < 3 && selectedItems.length < listVar.length) {
+    selectedItems.add(listVar[random.nextInt(listVar.length)]);
+  }
+
+  return selectedItems.toList();
+}

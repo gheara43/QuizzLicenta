@@ -64,6 +64,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: HomeWidget.routeName,
           path: HomeWidget.routePath,
           builder: (context, params) => HomeWidget(),
+        ),
+        FFRoute(
+          name: TestWidget.routeName,
+          path: TestWidget.routePath,
+          builder: (context, params) => TestWidget(
+            questionNumber: params.getParam(
+              'questionNumber',
+              ParamType.int,
+            ),
+            quizz: params.getParam<QuestionDataTypeStruct>(
+              'quizz',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: QuestionDataTypeStruct.fromSerializableMap,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

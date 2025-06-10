@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -115,16 +116,17 @@ class _HomeWidgetState extends State<HomeWidget> {
               top: true,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 800.0,
-                        ),
-                        decoration: BoxDecoration(),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, -1.0),
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: 800.0,
+                      ),
+                      decoration: BoxDecoration(),
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 20.0, 20.0, 20.0),
@@ -150,6 +152,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               mainAxisSpacing: 10.0,
                               childAspectRatio: 2.0,
                             ),
+                            shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             children: [
                               FFButtonWidget(
@@ -1024,6 +1027,139 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, -1.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          _model.addToAllQuestions(FFAppConstants.asd);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.bazedate);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.cloud);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.comert);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.criptografie);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.fp);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.inovare);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.java);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.poo);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.python);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.retele);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.sgbd);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.so);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.tap);
+                          safeSetState(() {});
+                          _model.addToAllQuestions(FFAppConstants.web);
+                          safeSetState(() {});
+                          for (int loop1Index = 0;
+                              loop1Index <
+                                  _model.allQuestions
+                                      .map((e) => e)
+                                      .toList()
+                                      .length;
+                              loop1Index++) {
+                            final currentLoop1Item = _model.allQuestions
+                                .map((e) => e)
+                                .toList()[loop1Index];
+                            _model.auxJson =
+                                functions.stringToJson(currentLoop1Item);
+                            safeSetState(() {});
+                            _model.auxQuizzList = (_model.auxJson!
+                                        .toList()
+                                        .map<QuestionDataTypeStruct?>(
+                                            QuestionDataTypeStruct.maybeFromMap)
+                                        .toList()
+                                    as Iterable<QuestionDataTypeStruct?>)
+                                .withoutNulls
+                                .toList()
+                                .cast<QuestionDataTypeStruct>();
+                            safeSetState(() {});
+                            for (int loop2Index = 0;
+                                loop2Index <
+                                    functions
+                                        .randomListItems(
+                                            _model.auxQuizzList.toList())
+                                        .length;
+                                loop2Index++) {
+                              final currentLoop2Item =
+                                  functions.randomListItems(
+                                      _model.auxQuizzList.toList())[loop2Index];
+                              _model.addToQuizzList(currentLoop2Item);
+                              safeSetState(() {});
+                            }
+                            _model.auxQuizzList = [];
+                            _model.auxJson = null;
+                            safeSetState(() {});
+                          }
+
+                          context.pushNamed(
+                            TestWidget.routeName,
+                            queryParameters: {
+                              'quizz': serializeParam(
+                                _model.quizzList,
+                                ParamType.DataStruct,
+                                isList: true,
+                              ),
+                            }.withoutNulls,
+                          );
+
+                          _model.quizzList = [];
+                          _model.auxQuizzList = [];
+                          _model.auxJson = null;
+                          safeSetState(() {});
+                        },
+                        text: 'Generate Test',
+                        options: FFButtonOptions(
+                          width: 760.0,
+                          height: 50.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                font: GoogleFonts.interTight(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
+                              ),
+                          elevation: 0.0,
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),
